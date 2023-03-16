@@ -1,0 +1,2484 @@
+{
+    "metadata": {
+        "kernelspec": {
+            "name": "SQL",
+            "display_name": "SQL",
+            "language": "sql"
+        },
+        "language_info": {
+            "name": "sql",
+            "version": ""
+        }
+    },
+    "nbformat_minor": 2,
+    "nbformat": 4,
+    "cells": [
+        {
+            "cell_type": "markdown",
+            "source": [
+                "**We  have 2 tables : olympics\\_history and olympics \\_history\\_noc\\_regions.**\n",
+                "\n",
+                "**First we will start by looking at columns of each table to get an idea.**"
+            ],
+            "metadata": {
+                "azdata_cell_guid": "34ec19ba-3711-47e9-90ef-39eb39fdc226"
+            },
+            "attachments": {}
+        },
+        {
+            "cell_type": "code",
+            "source": [
+                "select * \r\n",
+                "from OLYMPICS_HISTORY\r\n",
+                "FETCH FIRST 20 ROWS ONLY"
+            ],
+            "metadata": {
+                "azdata_cell_guid": "024b40b7-57ef-4dad-a87d-411976137fc7",
+                "language": "sql"
+            },
+            "outputs": [
+                {
+                    "output_type": "display_data",
+                    "data": {
+                        "text/html": "(20 row(s) affected)"
+                    },
+                    "metadata": {}
+                },
+                {
+                    "output_type": "display_data",
+                    "data": {
+                        "text/html": "Total execution time: 00:00:00.020"
+                    },
+                    "metadata": {}
+                },
+                {
+                    "output_type": "execute_result",
+                    "metadata": {},
+                    "execution_count": 3,
+                    "data": {
+                        "application/vnd.dataresource+json": {
+                            "schema": {
+                                "fields": [
+                                    {
+                                        "name": "id"
+                                    },
+                                    {
+                                        "name": "name"
+                                    },
+                                    {
+                                        "name": "sex"
+                                    },
+                                    {
+                                        "name": "age"
+                                    },
+                                    {
+                                        "name": "height"
+                                    },
+                                    {
+                                        "name": "weight"
+                                    },
+                                    {
+                                        "name": "team"
+                                    },
+                                    {
+                                        "name": "noc"
+                                    },
+                                    {
+                                        "name": "games"
+                                    },
+                                    {
+                                        "name": "year"
+                                    },
+                                    {
+                                        "name": "season"
+                                    },
+                                    {
+                                        "name": "city"
+                                    },
+                                    {
+                                        "name": "sport"
+                                    },
+                                    {
+                                        "name": "event"
+                                    },
+                                    {
+                                        "name": "medal"
+                                    }
+                                ]
+                            },
+                            "data": [
+                                {
+                                    "0": "1",
+                                    "1": "A Dijiang",
+                                    "2": "M",
+                                    "3": "24",
+                                    "4": "180",
+                                    "5": "80",
+                                    "6": "China",
+                                    "7": "CHN",
+                                    "8": "1992 Summer",
+                                    "9": "1992",
+                                    "10": "Summer",
+                                    "11": "Barcelona",
+                                    "12": "Basketball",
+                                    "13": "Basketball Men's Basketball",
+                                    "14": "NA"
+                                },
+                                {
+                                    "0": "2",
+                                    "1": "A Lamusi",
+                                    "2": "M",
+                                    "3": "23",
+                                    "4": "170",
+                                    "5": "60",
+                                    "6": "China",
+                                    "7": "CHN",
+                                    "8": "2012 Summer",
+                                    "9": "2012",
+                                    "10": "Summer",
+                                    "11": "London",
+                                    "12": "Judo",
+                                    "13": "Judo Men's Extra-Lightweight",
+                                    "14": "NA"
+                                },
+                                {
+                                    "0": "3",
+                                    "1": "Gunnar Nielsen Aaby",
+                                    "2": "M",
+                                    "3": "24",
+                                    "4": "NA",
+                                    "5": "NA",
+                                    "6": "Denmark",
+                                    "7": "DEN",
+                                    "8": "1920 Summer",
+                                    "9": "1920",
+                                    "10": "Summer",
+                                    "11": "Antwerpen",
+                                    "12": "Football",
+                                    "13": "Football Men's Football",
+                                    "14": "NA"
+                                },
+                                {
+                                    "0": "4",
+                                    "1": "Edgar Lindenau Aabye",
+                                    "2": "M",
+                                    "3": "34",
+                                    "4": "NA",
+                                    "5": "NA",
+                                    "6": "Denmark/Sweden",
+                                    "7": "DEN",
+                                    "8": "1900 Summer",
+                                    "9": "1900",
+                                    "10": "Summer",
+                                    "11": "Paris",
+                                    "12": "Tug-Of-War",
+                                    "13": "Tug-Of-War Men's Tug-Of-War",
+                                    "14": "Gold"
+                                },
+                                {
+                                    "0": "5",
+                                    "1": "Christine Jacoba Aaftink",
+                                    "2": "F",
+                                    "3": "21",
+                                    "4": "185",
+                                    "5": "82",
+                                    "6": "Netherlands",
+                                    "7": "NED",
+                                    "8": "1988 Winter",
+                                    "9": "1988",
+                                    "10": "Winter",
+                                    "11": "Calgary",
+                                    "12": "Speed Skating",
+                                    "13": "Speed Skating Women's 500 metres",
+                                    "14": "NA"
+                                },
+                                {
+                                    "0": "5",
+                                    "1": "Christine Jacoba Aaftink",
+                                    "2": "F",
+                                    "3": "21",
+                                    "4": "185",
+                                    "5": "82",
+                                    "6": "Netherlands",
+                                    "7": "NED",
+                                    "8": "1988 Winter",
+                                    "9": "1988",
+                                    "10": "Winter",
+                                    "11": "Calgary",
+                                    "12": "Speed Skating",
+                                    "13": "Speed Skating Women's 1,000 metres",
+                                    "14": "NA"
+                                },
+                                {
+                                    "0": "5",
+                                    "1": "Christine Jacoba Aaftink",
+                                    "2": "F",
+                                    "3": "25",
+                                    "4": "185",
+                                    "5": "82",
+                                    "6": "Netherlands",
+                                    "7": "NED",
+                                    "8": "1992 Winter",
+                                    "9": "1992",
+                                    "10": "Winter",
+                                    "11": "Albertville",
+                                    "12": "Speed Skating",
+                                    "13": "Speed Skating Women's 500 metres",
+                                    "14": "NA"
+                                },
+                                {
+                                    "0": "5",
+                                    "1": "Christine Jacoba Aaftink",
+                                    "2": "F",
+                                    "3": "25",
+                                    "4": "185",
+                                    "5": "82",
+                                    "6": "Netherlands",
+                                    "7": "NED",
+                                    "8": "1992 Winter",
+                                    "9": "1992",
+                                    "10": "Winter",
+                                    "11": "Albertville",
+                                    "12": "Speed Skating",
+                                    "13": "Speed Skating Women's 1,000 metres",
+                                    "14": "NA"
+                                },
+                                {
+                                    "0": "5",
+                                    "1": "Christine Jacoba Aaftink",
+                                    "2": "F",
+                                    "3": "27",
+                                    "4": "185",
+                                    "5": "82",
+                                    "6": "Netherlands",
+                                    "7": "NED",
+                                    "8": "1994 Winter",
+                                    "9": "1994",
+                                    "10": "Winter",
+                                    "11": "Lillehammer",
+                                    "12": "Speed Skating",
+                                    "13": "Speed Skating Women's 500 metres",
+                                    "14": "NA"
+                                },
+                                {
+                                    "0": "5",
+                                    "1": "Christine Jacoba Aaftink",
+                                    "2": "F",
+                                    "3": "27",
+                                    "4": "185",
+                                    "5": "82",
+                                    "6": "Netherlands",
+                                    "7": "NED",
+                                    "8": "1994 Winter",
+                                    "9": "1994",
+                                    "10": "Winter",
+                                    "11": "Lillehammer",
+                                    "12": "Speed Skating",
+                                    "13": "Speed Skating Women's 1,000 metres",
+                                    "14": "NA"
+                                },
+                                {
+                                    "0": "6",
+                                    "1": "Per Knut Aaland",
+                                    "2": "M",
+                                    "3": "31",
+                                    "4": "188",
+                                    "5": "75",
+                                    "6": "United States",
+                                    "7": "USA",
+                                    "8": "1992 Winter",
+                                    "9": "1992",
+                                    "10": "Winter",
+                                    "11": "Albertville",
+                                    "12": "Cross Country Skiing",
+                                    "13": "Cross Country Skiing Men's 10 kilometres",
+                                    "14": "NA"
+                                },
+                                {
+                                    "0": "6",
+                                    "1": "Per Knut Aaland",
+                                    "2": "M",
+                                    "3": "31",
+                                    "4": "188",
+                                    "5": "75",
+                                    "6": "United States",
+                                    "7": "USA",
+                                    "8": "1992 Winter",
+                                    "9": "1992",
+                                    "10": "Winter",
+                                    "11": "Albertville",
+                                    "12": "Cross Country Skiing",
+                                    "13": "Cross Country Skiing Men's 50 kilometres",
+                                    "14": "NA"
+                                },
+                                {
+                                    "0": "6",
+                                    "1": "Per Knut Aaland",
+                                    "2": "M",
+                                    "3": "31",
+                                    "4": "188",
+                                    "5": "75",
+                                    "6": "United States",
+                                    "7": "USA",
+                                    "8": "1992 Winter",
+                                    "9": "1992",
+                                    "10": "Winter",
+                                    "11": "Albertville",
+                                    "12": "Cross Country Skiing",
+                                    "13": "Cross Country Skiing Men's 10/15 kilometres Pursuit",
+                                    "14": "NA"
+                                },
+                                {
+                                    "0": "6",
+                                    "1": "Per Knut Aaland",
+                                    "2": "M",
+                                    "3": "31",
+                                    "4": "188",
+                                    "5": "75",
+                                    "6": "United States",
+                                    "7": "USA",
+                                    "8": "1992 Winter",
+                                    "9": "1992",
+                                    "10": "Winter",
+                                    "11": "Albertville",
+                                    "12": "Cross Country Skiing",
+                                    "13": "Cross Country Skiing Men's 4 x 10 kilometres Relay",
+                                    "14": "NA"
+                                },
+                                {
+                                    "0": "6",
+                                    "1": "Per Knut Aaland",
+                                    "2": "M",
+                                    "3": "33",
+                                    "4": "188",
+                                    "5": "75",
+                                    "6": "United States",
+                                    "7": "USA",
+                                    "8": "1994 Winter",
+                                    "9": "1994",
+                                    "10": "Winter",
+                                    "11": "Lillehammer",
+                                    "12": "Cross Country Skiing",
+                                    "13": "Cross Country Skiing Men's 10 kilometres",
+                                    "14": "NA"
+                                },
+                                {
+                                    "0": "6",
+                                    "1": "Per Knut Aaland",
+                                    "2": "M",
+                                    "3": "33",
+                                    "4": "188",
+                                    "5": "75",
+                                    "6": "United States",
+                                    "7": "USA",
+                                    "8": "1994 Winter",
+                                    "9": "1994",
+                                    "10": "Winter",
+                                    "11": "Lillehammer",
+                                    "12": "Cross Country Skiing",
+                                    "13": "Cross Country Skiing Men's 30 kilometres",
+                                    "14": "NA"
+                                },
+                                {
+                                    "0": "6",
+                                    "1": "Per Knut Aaland",
+                                    "2": "M",
+                                    "3": "33",
+                                    "4": "188",
+                                    "5": "75",
+                                    "6": "United States",
+                                    "7": "USA",
+                                    "8": "1994 Winter",
+                                    "9": "1994",
+                                    "10": "Winter",
+                                    "11": "Lillehammer",
+                                    "12": "Cross Country Skiing",
+                                    "13": "Cross Country Skiing Men's 10/15 kilometres Pursuit",
+                                    "14": "NA"
+                                },
+                                {
+                                    "0": "6",
+                                    "1": "Per Knut Aaland",
+                                    "2": "M",
+                                    "3": "33",
+                                    "4": "188",
+                                    "5": "75",
+                                    "6": "United States",
+                                    "7": "USA",
+                                    "8": "1994 Winter",
+                                    "9": "1994",
+                                    "10": "Winter",
+                                    "11": "Lillehammer",
+                                    "12": "Cross Country Skiing",
+                                    "13": "Cross Country Skiing Men's 4 x 10 kilometres Relay",
+                                    "14": "NA"
+                                },
+                                {
+                                    "0": "7",
+                                    "1": "John Aalberg",
+                                    "2": "M",
+                                    "3": "31",
+                                    "4": "183",
+                                    "5": "72",
+                                    "6": "United States",
+                                    "7": "USA",
+                                    "8": "1992 Winter",
+                                    "9": "1992",
+                                    "10": "Winter",
+                                    "11": "Albertville",
+                                    "12": "Cross Country Skiing",
+                                    "13": "Cross Country Skiing Men's 10 kilometres",
+                                    "14": "NA"
+                                },
+                                {
+                                    "0": "7",
+                                    "1": "John Aalberg",
+                                    "2": "M",
+                                    "3": "31",
+                                    "4": "183",
+                                    "5": "72",
+                                    "6": "United States",
+                                    "7": "USA",
+                                    "8": "1992 Winter",
+                                    "9": "1992",
+                                    "10": "Winter",
+                                    "11": "Albertville",
+                                    "12": "Cross Country Skiing",
+                                    "13": "Cross Country Skiing Men's 50 kilometres",
+                                    "14": "NA"
+                                }
+                            ]
+                        },
+                        "text/html": [
+                            "<table>",
+                            "<tr><th>id</th><th>name</th><th>sex</th><th>age</th><th>height</th><th>weight</th><th>team</th><th>noc</th><th>games</th><th>year</th><th>season</th><th>city</th><th>sport</th><th>event</th><th>medal</th></tr>",
+                            "<tr><td>1</td><td>A Dijiang</td><td>M</td><td>24</td><td>180</td><td>80</td><td>China</td><td>CHN</td><td>1992 Summer</td><td>1992</td><td>Summer</td><td>Barcelona</td><td>Basketball</td><td>Basketball Men's Basketball</td><td>NA</td></tr>",
+                            "<tr><td>2</td><td>A Lamusi</td><td>M</td><td>23</td><td>170</td><td>60</td><td>China</td><td>CHN</td><td>2012 Summer</td><td>2012</td><td>Summer</td><td>London</td><td>Judo</td><td>Judo Men's Extra-Lightweight</td><td>NA</td></tr>",
+                            "<tr><td>3</td><td>Gunnar Nielsen Aaby</td><td>M</td><td>24</td><td>NA</td><td>NA</td><td>Denmark</td><td>DEN</td><td>1920 Summer</td><td>1920</td><td>Summer</td><td>Antwerpen</td><td>Football</td><td>Football Men's Football</td><td>NA</td></tr>",
+                            "<tr><td>4</td><td>Edgar Lindenau Aabye</td><td>M</td><td>34</td><td>NA</td><td>NA</td><td>Denmark/Sweden</td><td>DEN</td><td>1900 Summer</td><td>1900</td><td>Summer</td><td>Paris</td><td>Tug-Of-War</td><td>Tug-Of-War Men's Tug-Of-War</td><td>Gold</td></tr>",
+                            "<tr><td>5</td><td>Christine Jacoba Aaftink</td><td>F</td><td>21</td><td>185</td><td>82</td><td>Netherlands</td><td>NED</td><td>1988 Winter</td><td>1988</td><td>Winter</td><td>Calgary</td><td>Speed Skating</td><td>Speed Skating Women's 500 metres</td><td>NA</td></tr>",
+                            "<tr><td>5</td><td>Christine Jacoba Aaftink</td><td>F</td><td>21</td><td>185</td><td>82</td><td>Netherlands</td><td>NED</td><td>1988 Winter</td><td>1988</td><td>Winter</td><td>Calgary</td><td>Speed Skating</td><td>Speed Skating Women's 1,000 metres</td><td>NA</td></tr>",
+                            "<tr><td>5</td><td>Christine Jacoba Aaftink</td><td>F</td><td>25</td><td>185</td><td>82</td><td>Netherlands</td><td>NED</td><td>1992 Winter</td><td>1992</td><td>Winter</td><td>Albertville</td><td>Speed Skating</td><td>Speed Skating Women's 500 metres</td><td>NA</td></tr>",
+                            "<tr><td>5</td><td>Christine Jacoba Aaftink</td><td>F</td><td>25</td><td>185</td><td>82</td><td>Netherlands</td><td>NED</td><td>1992 Winter</td><td>1992</td><td>Winter</td><td>Albertville</td><td>Speed Skating</td><td>Speed Skating Women's 1,000 metres</td><td>NA</td></tr>",
+                            "<tr><td>5</td><td>Christine Jacoba Aaftink</td><td>F</td><td>27</td><td>185</td><td>82</td><td>Netherlands</td><td>NED</td><td>1994 Winter</td><td>1994</td><td>Winter</td><td>Lillehammer</td><td>Speed Skating</td><td>Speed Skating Women's 500 metres</td><td>NA</td></tr>",
+                            "<tr><td>5</td><td>Christine Jacoba Aaftink</td><td>F</td><td>27</td><td>185</td><td>82</td><td>Netherlands</td><td>NED</td><td>1994 Winter</td><td>1994</td><td>Winter</td><td>Lillehammer</td><td>Speed Skating</td><td>Speed Skating Women's 1,000 metres</td><td>NA</td></tr>",
+                            "<tr><td>6</td><td>Per Knut Aaland</td><td>M</td><td>31</td><td>188</td><td>75</td><td>United States</td><td>USA</td><td>1992 Winter</td><td>1992</td><td>Winter</td><td>Albertville</td><td>Cross Country Skiing</td><td>Cross Country Skiing Men's 10 kilometres</td><td>NA</td></tr>",
+                            "<tr><td>6</td><td>Per Knut Aaland</td><td>M</td><td>31</td><td>188</td><td>75</td><td>United States</td><td>USA</td><td>1992 Winter</td><td>1992</td><td>Winter</td><td>Albertville</td><td>Cross Country Skiing</td><td>Cross Country Skiing Men's 50 kilometres</td><td>NA</td></tr>",
+                            "<tr><td>6</td><td>Per Knut Aaland</td><td>M</td><td>31</td><td>188</td><td>75</td><td>United States</td><td>USA</td><td>1992 Winter</td><td>1992</td><td>Winter</td><td>Albertville</td><td>Cross Country Skiing</td><td>Cross Country Skiing Men's 10/15 kilometres Pursuit</td><td>NA</td></tr>",
+                            "<tr><td>6</td><td>Per Knut Aaland</td><td>M</td><td>31</td><td>188</td><td>75</td><td>United States</td><td>USA</td><td>1992 Winter</td><td>1992</td><td>Winter</td><td>Albertville</td><td>Cross Country Skiing</td><td>Cross Country Skiing Men's 4 x 10 kilometres Relay</td><td>NA</td></tr>",
+                            "<tr><td>6</td><td>Per Knut Aaland</td><td>M</td><td>33</td><td>188</td><td>75</td><td>United States</td><td>USA</td><td>1994 Winter</td><td>1994</td><td>Winter</td><td>Lillehammer</td><td>Cross Country Skiing</td><td>Cross Country Skiing Men's 10 kilometres</td><td>NA</td></tr>",
+                            "<tr><td>6</td><td>Per Knut Aaland</td><td>M</td><td>33</td><td>188</td><td>75</td><td>United States</td><td>USA</td><td>1994 Winter</td><td>1994</td><td>Winter</td><td>Lillehammer</td><td>Cross Country Skiing</td><td>Cross Country Skiing Men's 30 kilometres</td><td>NA</td></tr>",
+                            "<tr><td>6</td><td>Per Knut Aaland</td><td>M</td><td>33</td><td>188</td><td>75</td><td>United States</td><td>USA</td><td>1994 Winter</td><td>1994</td><td>Winter</td><td>Lillehammer</td><td>Cross Country Skiing</td><td>Cross Country Skiing Men's 10/15 kilometres Pursuit</td><td>NA</td></tr>",
+                            "<tr><td>6</td><td>Per Knut Aaland</td><td>M</td><td>33</td><td>188</td><td>75</td><td>United States</td><td>USA</td><td>1994 Winter</td><td>1994</td><td>Winter</td><td>Lillehammer</td><td>Cross Country Skiing</td><td>Cross Country Skiing Men's 4 x 10 kilometres Relay</td><td>NA</td></tr>",
+                            "<tr><td>7</td><td>John Aalberg</td><td>M</td><td>31</td><td>183</td><td>72</td><td>United States</td><td>USA</td><td>1992 Winter</td><td>1992</td><td>Winter</td><td>Albertville</td><td>Cross Country Skiing</td><td>Cross Country Skiing Men's 10 kilometres</td><td>NA</td></tr>",
+                            "<tr><td>7</td><td>John Aalberg</td><td>M</td><td>31</td><td>183</td><td>72</td><td>United States</td><td>USA</td><td>1992 Winter</td><td>1992</td><td>Winter</td><td>Albertville</td><td>Cross Country Skiing</td><td>Cross Country Skiing Men's 50 kilometres</td><td>NA</td></tr>",
+                            "</table>"
+                        ]
+                    }
+                }
+            ],
+            "execution_count": 3
+        },
+        {
+            "cell_type": "markdown",
+            "source": [
+                "**To get the count of all the rows present in the dataset**"
+            ],
+            "metadata": {
+                "azdata_cell_guid": "d2b4b732-9665-43bb-a171-dcdcb8ff3f47"
+            },
+            "attachments": {}
+        },
+        {
+            "cell_type": "code",
+            "source": [
+                "select count(*) from OLYMPICS_HISTORY;"
+            ],
+            "metadata": {
+                "azdata_cell_guid": "9a543a10-439c-49dd-b360-ab2ae4463a10",
+                "language": "sql"
+            },
+            "outputs": [
+                {
+                    "output_type": "display_data",
+                    "data": {
+                        "text/html": "(1 row(s) affected)"
+                    },
+                    "metadata": {}
+                },
+                {
+                    "output_type": "display_data",
+                    "data": {
+                        "text/html": "Total execution time: 00:00:00.522"
+                    },
+                    "metadata": {}
+                },
+                {
+                    "output_type": "execute_result",
+                    "metadata": {},
+                    "execution_count": 4,
+                    "data": {
+                        "application/vnd.dataresource+json": {
+                            "schema": {
+                                "fields": [
+                                    {
+                                        "name": "count"
+                                    }
+                                ]
+                            },
+                            "data": [
+                                {
+                                    "0": "271116"
+                                }
+                            ]
+                        },
+                        "text/html": [
+                            "<table>",
+                            "<tr><th>count</th></tr>",
+                            "<tr><td>271116</td></tr>",
+                            "</table>"
+                        ]
+                    }
+                }
+            ],
+            "execution_count": 4
+        },
+        {
+            "cell_type": "code",
+            "source": [
+                "select * \r\n",
+                "from olympics_history_noc_regions\r\n",
+                "FETCH FIRST 20 ROWS ONLY"
+            ],
+            "metadata": {
+                "language": "sql",
+                "azdata_cell_guid": "57cab3b6-d1f7-463e-a5c6-4865e0b3c12f"
+            },
+            "outputs": [
+                {
+                    "output_type": "display_data",
+                    "data": {
+                        "text/html": "(20 row(s) affected)"
+                    },
+                    "metadata": {}
+                },
+                {
+                    "output_type": "display_data",
+                    "data": {
+                        "text/html": "Total execution time: 00:00:00.003"
+                    },
+                    "metadata": {}
+                },
+                {
+                    "output_type": "execute_result",
+                    "metadata": {},
+                    "execution_count": 44,
+                    "data": {
+                        "application/vnd.dataresource+json": {
+                            "schema": {
+                                "fields": [
+                                    {
+                                        "name": "noc"
+                                    },
+                                    {
+                                        "name": "region"
+                                    },
+                                    {
+                                        "name": "notes"
+                                    }
+                                ]
+                            },
+                            "data": [
+                                {
+                                    "0": "AFG",
+                                    "1": "Afghanistan",
+                                    "2": "NULL"
+                                },
+                                {
+                                    "0": "AHO",
+                                    "1": "Curacao",
+                                    "2": "Netherlands Antilles"
+                                },
+                                {
+                                    "0": "ALB",
+                                    "1": "Albania",
+                                    "2": "NULL"
+                                },
+                                {
+                                    "0": "ALG",
+                                    "1": "Algeria",
+                                    "2": "NULL"
+                                },
+                                {
+                                    "0": "AND",
+                                    "1": "Andorra",
+                                    "2": "NULL"
+                                },
+                                {
+                                    "0": "ANG",
+                                    "1": "Angola",
+                                    "2": "NULL"
+                                },
+                                {
+                                    "0": "ANT",
+                                    "1": "Antigua",
+                                    "2": "Antigua and Barbuda"
+                                },
+                                {
+                                    "0": "ANZ",
+                                    "1": "Australia",
+                                    "2": "Australasia"
+                                },
+                                {
+                                    "0": "ARG",
+                                    "1": "Argentina",
+                                    "2": "NULL"
+                                },
+                                {
+                                    "0": "ARM",
+                                    "1": "Armenia",
+                                    "2": "NULL"
+                                },
+                                {
+                                    "0": "ARU",
+                                    "1": "Aruba",
+                                    "2": "NULL"
+                                },
+                                {
+                                    "0": "ASA",
+                                    "1": "American Samoa",
+                                    "2": "NULL"
+                                },
+                                {
+                                    "0": "AUS",
+                                    "1": "Australia",
+                                    "2": "NULL"
+                                },
+                                {
+                                    "0": "AUT",
+                                    "1": "Austria",
+                                    "2": "NULL"
+                                },
+                                {
+                                    "0": "AZE",
+                                    "1": "Azerbaijan",
+                                    "2": "NULL"
+                                },
+                                {
+                                    "0": "BAH",
+                                    "1": "Bahamas",
+                                    "2": "NULL"
+                                },
+                                {
+                                    "0": "BAN",
+                                    "1": "Bangladesh",
+                                    "2": "NULL"
+                                },
+                                {
+                                    "0": "BAR",
+                                    "1": "Barbados",
+                                    "2": "NULL"
+                                },
+                                {
+                                    "0": "BDI",
+                                    "1": "Burundi",
+                                    "2": "NULL"
+                                },
+                                {
+                                    "0": "BEL",
+                                    "1": "Belgium",
+                                    "2": "NULL"
+                                }
+                            ]
+                        },
+                        "text/html": [
+                            "<table>",
+                            "<tr><th>noc</th><th>region</th><th>notes</th></tr>",
+                            "<tr><td>AFG</td><td>Afghanistan</td><td>NULL</td></tr>",
+                            "<tr><td>AHO</td><td>Curacao</td><td>Netherlands Antilles</td></tr>",
+                            "<tr><td>ALB</td><td>Albania</td><td>NULL</td></tr>",
+                            "<tr><td>ALG</td><td>Algeria</td><td>NULL</td></tr>",
+                            "<tr><td>AND</td><td>Andorra</td><td>NULL</td></tr>",
+                            "<tr><td>ANG</td><td>Angola</td><td>NULL</td></tr>",
+                            "<tr><td>ANT</td><td>Antigua</td><td>Antigua and Barbuda</td></tr>",
+                            "<tr><td>ANZ</td><td>Australia</td><td>Australasia</td></tr>",
+                            "<tr><td>ARG</td><td>Argentina</td><td>NULL</td></tr>",
+                            "<tr><td>ARM</td><td>Armenia</td><td>NULL</td></tr>",
+                            "<tr><td>ARU</td><td>Aruba</td><td>NULL</td></tr>",
+                            "<tr><td>ASA</td><td>American Samoa</td><td>NULL</td></tr>",
+                            "<tr><td>AUS</td><td>Australia</td><td>NULL</td></tr>",
+                            "<tr><td>AUT</td><td>Austria</td><td>NULL</td></tr>",
+                            "<tr><td>AZE</td><td>Azerbaijan</td><td>NULL</td></tr>",
+                            "<tr><td>BAH</td><td>Bahamas</td><td>NULL</td></tr>",
+                            "<tr><td>BAN</td><td>Bangladesh</td><td>NULL</td></tr>",
+                            "<tr><td>BAR</td><td>Barbados</td><td>NULL</td></tr>",
+                            "<tr><td>BDI</td><td>Burundi</td><td>NULL</td></tr>",
+                            "<tr><td>BEL</td><td>Belgium</td><td>NULL</td></tr>",
+                            "</table>"
+                        ]
+                    }
+                }
+            ],
+            "execution_count": 44
+        },
+        {
+            "cell_type": "code",
+            "source": [
+                "select count(*) from OLYMPICS_HISTORY_NOC_REGIONS"
+            ],
+            "metadata": {
+                "language": "sql",
+                "azdata_cell_guid": "db4d7862-13e8-4e6a-a91d-6ff02ce68891"
+            },
+            "outputs": [
+                {
+                    "output_type": "display_data",
+                    "data": {
+                        "text/html": "(1 row(s) affected)"
+                    },
+                    "metadata": {}
+                },
+                {
+                    "output_type": "display_data",
+                    "data": {
+                        "text/html": "Total execution time: 00:00:00.002"
+                    },
+                    "metadata": {}
+                },
+                {
+                    "output_type": "execute_result",
+                    "metadata": {},
+                    "execution_count": 45,
+                    "data": {
+                        "application/vnd.dataresource+json": {
+                            "schema": {
+                                "fields": [
+                                    {
+                                        "name": "count"
+                                    }
+                                ]
+                            },
+                            "data": [
+                                {
+                                    "0": "230"
+                                }
+                            ]
+                        },
+                        "text/html": [
+                            "<table>",
+                            "<tr><th>count</th></tr>",
+                            "<tr><td>230</td></tr>",
+                            "</table>"
+                        ]
+                    }
+                }
+            ],
+            "execution_count": 45
+        },
+        {
+            "cell_type": "markdown",
+            "source": [
+                " **how many times a particular sporT was played in summer olympics**"
+            ],
+            "metadata": {
+                "azdata_cell_guid": "6f8f3a6c-7cf9-4b12-b08b-5df928f53155"
+            },
+            "attachments": {}
+        },
+        {
+            "cell_type": "code",
+            "source": [
+                "with t1 as (\r\n",
+                "select distinct sport, games\r\n",
+                "from olympics_history\r\n",
+                "where season = 'Summer'\r\n",
+                "order by games),\r\n",
+                "t2 as (\r\n",
+                "select sport, count(games) as total_count\r\n",
+                "\tfrom t1\r\n",
+                "\tgroup by sport \r\n",
+                "\torder by total_count\r\n",
+                ")\r\n",
+                "select sport, total_count\r\n",
+                "from t2;"
+            ],
+            "metadata": {
+                "azdata_cell_guid": "7dc6242b-b288-4f46-92a6-02f21cea0aea",
+                "language": "sql"
+            },
+            "outputs": [
+                {
+                    "output_type": "display_data",
+                    "data": {
+                        "text/html": "(52 row(s) affected)"
+                    },
+                    "metadata": {}
+                },
+                {
+                    "output_type": "display_data",
+                    "data": {
+                        "text/html": "Total execution time: 00:00:00.412"
+                    },
+                    "metadata": {}
+                },
+                {
+                    "output_type": "execute_result",
+                    "metadata": {},
+                    "execution_count": 5,
+                    "data": {
+                        "application/vnd.dataresource+json": {
+                            "schema": {
+                                "fields": [
+                                    {
+                                        "name": "sport"
+                                    },
+                                    {
+                                        "name": "total_count"
+                                    }
+                                ]
+                            },
+                            "data": [
+                                {
+                                    "0": "Aeronautics",
+                                    "1": "1"
+                                },
+                                {
+                                    "0": "Rugby Sevens",
+                                    "1": "1"
+                                },
+                                {
+                                    "0": "Jeu De Paume",
+                                    "1": "1"
+                                },
+                                {
+                                    "0": "Motorboating",
+                                    "1": "1"
+                                },
+                                {
+                                    "0": "Basque Pelota",
+                                    "1": "1"
+                                },
+                                {
+                                    "0": "Roque",
+                                    "1": "1"
+                                },
+                                {
+                                    "0": "Ice Hockey",
+                                    "1": "1"
+                                },
+                                {
+                                    "0": "Racquets",
+                                    "1": "1"
+                                },
+                                {
+                                    "0": "Cricket",
+                                    "1": "1"
+                                },
+                                {
+                                    "0": "Croquet",
+                                    "1": "1"
+                                },
+                                {
+                                    "0": "Alpinism",
+                                    "1": "2"
+                                },
+                                {
+                                    "0": "Lacrosse",
+                                    "1": "2"
+                                },
+                                {
+                                    "0": "Figure Skating",
+                                    "1": "2"
+                                },
+                                {
+                                    "0": "Golf",
+                                    "1": "3"
+                                },
+                                {
+                                    "0": "Rugby",
+                                    "1": "4"
+                                },
+                                {
+                                    "0": "Softball",
+                                    "1": "4"
+                                },
+                                {
+                                    "0": "Polo",
+                                    "1": "5"
+                                },
+                                {
+                                    "0": "Triathlon",
+                                    "1": "5"
+                                },
+                                {
+                                    "0": "Trampolining",
+                                    "1": "5"
+                                },
+                                {
+                                    "0": "Taekwondo",
+                                    "1": "5"
+                                },
+                                {
+                                    "0": "Baseball",
+                                    "1": "5"
+                                },
+                                {
+                                    "0": "Beach Volleyball",
+                                    "1": "6"
+                                },
+                                {
+                                    "0": "Tug-Of-War",
+                                    "1": "6"
+                                },
+                                {
+                                    "0": "Badminton",
+                                    "1": "7"
+                                },
+                                {
+                                    "0": "Art Competitions",
+                                    "1": "7"
+                                },
+                                {
+                                    "0": "Table Tennis",
+                                    "1": "8"
+                                },
+                                {
+                                    "0": "Rhythmic Gymnastics",
+                                    "1": "9"
+                                },
+                                {
+                                    "0": "Synchronized Swimming",
+                                    "1": "9"
+                                },
+                                {
+                                    "0": "Handball",
+                                    "1": "13"
+                                },
+                                {
+                                    "0": "Judo",
+                                    "1": "13"
+                                },
+                                {
+                                    "0": "Volleyball",
+                                    "1": "14"
+                                },
+                                {
+                                    "0": "Tennis",
+                                    "1": "16"
+                                },
+                                {
+                                    "0": "Archery",
+                                    "1": "16"
+                                },
+                                {
+                                    "0": "Basketball",
+                                    "1": "19"
+                                },
+                                {
+                                    "0": "Canoeing",
+                                    "1": "19"
+                                },
+                                {
+                                    "0": "Hockey",
+                                    "1": "23"
+                                },
+                                {
+                                    "0": "Modern Pentathlon",
+                                    "1": "24"
+                                },
+                                {
+                                    "0": "Boxing",
+                                    "1": "25"
+                                },
+                                {
+                                    "0": "Equestrianism",
+                                    "1": "25"
+                                },
+                                {
+                                    "0": "Sailing",
+                                    "1": "26"
+                                },
+                                {
+                                    "0": "Weightlifting",
+                                    "1": "26"
+                                },
+                                {
+                                    "0": "Water Polo",
+                                    "1": "27"
+                                },
+                                {
+                                    "0": "Shooting",
+                                    "1": "27"
+                                },
+                                {
+                                    "0": "Football",
+                                    "1": "27"
+                                },
+                                {
+                                    "0": "Diving",
+                                    "1": "27"
+                                },
+                                {
+                                    "0": "Rowing",
+                                    "1": "28"
+                                },
+                                {
+                                    "0": "Wrestling",
+                                    "1": "28"
+                                },
+                                {
+                                    "0": "Cycling",
+                                    "1": "29"
+                                },
+                                {
+                                    "0": "Athletics",
+                                    "1": "29"
+                                },
+                                {
+                                    "0": "Gymnastics",
+                                    "1": "29"
+                                },
+                                {
+                                    "0": "Fencing",
+                                    "1": "29"
+                                },
+                                {
+                                    "0": "Swimming",
+                                    "1": "29"
+                                }
+                            ]
+                        },
+                        "text/html": [
+                            "<table>",
+                            "<tr><th>sport</th><th>total_count</th></tr>",
+                            "<tr><td>Aeronautics</td><td>1</td></tr>",
+                            "<tr><td>Rugby Sevens</td><td>1</td></tr>",
+                            "<tr><td>Jeu De Paume</td><td>1</td></tr>",
+                            "<tr><td>Motorboating</td><td>1</td></tr>",
+                            "<tr><td>Basque Pelota</td><td>1</td></tr>",
+                            "<tr><td>Roque</td><td>1</td></tr>",
+                            "<tr><td>Ice Hockey</td><td>1</td></tr>",
+                            "<tr><td>Racquets</td><td>1</td></tr>",
+                            "<tr><td>Cricket</td><td>1</td></tr>",
+                            "<tr><td>Croquet</td><td>1</td></tr>",
+                            "<tr><td>Alpinism</td><td>2</td></tr>",
+                            "<tr><td>Lacrosse</td><td>2</td></tr>",
+                            "<tr><td>Figure Skating</td><td>2</td></tr>",
+                            "<tr><td>Golf</td><td>3</td></tr>",
+                            "<tr><td>Rugby</td><td>4</td></tr>",
+                            "<tr><td>Softball</td><td>4</td></tr>",
+                            "<tr><td>Polo</td><td>5</td></tr>",
+                            "<tr><td>Triathlon</td><td>5</td></tr>",
+                            "<tr><td>Trampolining</td><td>5</td></tr>",
+                            "<tr><td>Taekwondo</td><td>5</td></tr>",
+                            "<tr><td>Baseball</td><td>5</td></tr>",
+                            "<tr><td>Beach Volleyball</td><td>6</td></tr>",
+                            "<tr><td>Tug-Of-War</td><td>6</td></tr>",
+                            "<tr><td>Badminton</td><td>7</td></tr>",
+                            "<tr><td>Art Competitions</td><td>7</td></tr>",
+                            "<tr><td>Table Tennis</td><td>8</td></tr>",
+                            "<tr><td>Rhythmic Gymnastics</td><td>9</td></tr>",
+                            "<tr><td>Synchronized Swimming</td><td>9</td></tr>",
+                            "<tr><td>Handball</td><td>13</td></tr>",
+                            "<tr><td>Judo</td><td>13</td></tr>",
+                            "<tr><td>Volleyball</td><td>14</td></tr>",
+                            "<tr><td>Tennis</td><td>16</td></tr>",
+                            "<tr><td>Archery</td><td>16</td></tr>",
+                            "<tr><td>Basketball</td><td>19</td></tr>",
+                            "<tr><td>Canoeing</td><td>19</td></tr>",
+                            "<tr><td>Hockey</td><td>23</td></tr>",
+                            "<tr><td>Modern Pentathlon</td><td>24</td></tr>",
+                            "<tr><td>Boxing</td><td>25</td></tr>",
+                            "<tr><td>Equestrianism</td><td>25</td></tr>",
+                            "<tr><td>Sailing</td><td>26</td></tr>",
+                            "<tr><td>Weightlifting</td><td>26</td></tr>",
+                            "<tr><td>Water Polo</td><td>27</td></tr>",
+                            "<tr><td>Shooting</td><td>27</td></tr>",
+                            "<tr><td>Football</td><td>27</td></tr>",
+                            "<tr><td>Diving</td><td>27</td></tr>",
+                            "<tr><td>Rowing</td><td>28</td></tr>",
+                            "<tr><td>Wrestling</td><td>28</td></tr>",
+                            "<tr><td>Cycling</td><td>29</td></tr>",
+                            "<tr><td>Athletics</td><td>29</td></tr>",
+                            "<tr><td>Gymnastics</td><td>29</td></tr>",
+                            "<tr><td>Fencing</td><td>29</td></tr>",
+                            "<tr><td>Swimming</td><td>29</td></tr>",
+                            "</table>"
+                        ]
+                    }
+                }
+            ],
+            "execution_count": 5
+        },
+        {
+            "cell_type": "markdown",
+            "source": [
+                "**Identify the sport that was played in all the summer olympic games**"
+            ],
+            "metadata": {
+                "azdata_cell_guid": "0cb2ca52-6395-4624-875b-a17529fbfb9e"
+            },
+            "attachments": {}
+        },
+        {
+            "cell_type": "markdown",
+            "source": [
+                "**step 1: Identify the sport that was played in all the summer olympic games**"
+            ],
+            "metadata": {
+                "azdata_cell_guid": "3649edd2-8360-4315-b28a-1dc6ed8284fe"
+            },
+            "attachments": {}
+        },
+        {
+            "cell_type": "code",
+            "source": [
+                "select distinct sport, games\r\n",
+                "from olympics_history\r\n",
+                "where season = 'Summer'\r\n",
+                "FETCH FIRST 20 ROWS ONLY;"
+            ],
+            "metadata": {
+                "azdata_cell_guid": "1393ac62-b665-483c-b3fa-8143c5e13187",
+                "language": "sql"
+            },
+            "outputs": [
+                {
+                    "output_type": "display_data",
+                    "data": {
+                        "text/html": "(20 row(s) affected)"
+                    },
+                    "metadata": {}
+                },
+                {
+                    "output_type": "display_data",
+                    "data": {
+                        "text/html": "Total execution time: 00:00:00.399"
+                    },
+                    "metadata": {}
+                },
+                {
+                    "output_type": "execute_result",
+                    "metadata": {},
+                    "execution_count": 7,
+                    "data": {
+                        "application/vnd.dataresource+json": {
+                            "schema": {
+                                "fields": [
+                                    {
+                                        "name": "sport"
+                                    },
+                                    {
+                                        "name": "games"
+                                    }
+                                ]
+                            },
+                            "data": [
+                                {
+                                    "0": "Equestrianism",
+                                    "1": "1960 Summer"
+                                },
+                                {
+                                    "0": "Archery",
+                                    "1": "1984 Summer"
+                                },
+                                {
+                                    "0": "Taekwondo",
+                                    "1": "2016 Summer"
+                                },
+                                {
+                                    "0": "Wrestling",
+                                    "1": "1976 Summer"
+                                },
+                                {
+                                    "0": "Weightlifting",
+                                    "1": "2004 Summer"
+                                },
+                                {
+                                    "0": "Cycling",
+                                    "1": "1968 Summer"
+                                },
+                                {
+                                    "0": "Water Polo",
+                                    "1": "2016 Summer"
+                                },
+                                {
+                                    "0": "Wrestling",
+                                    "1": "1920 Summer"
+                                },
+                                {
+                                    "0": "Gymnastics",
+                                    "1": "1928 Summer"
+                                },
+                                {
+                                    "0": "Canoeing",
+                                    "1": "1992 Summer"
+                                },
+                                {
+                                    "0": "Athletics",
+                                    "1": "1988 Summer"
+                                },
+                                {
+                                    "0": "Tug-Of-War",
+                                    "1": "1912 Summer"
+                                },
+                                {
+                                    "0": "Canoeing",
+                                    "1": "2008 Summer"
+                                },
+                                {
+                                    "0": "Handball",
+                                    "1": "1976 Summer"
+                                },
+                                {
+                                    "0": "Sailing",
+                                    "1": "1992 Summer"
+                                },
+                                {
+                                    "0": "Shooting",
+                                    "1": "1996 Summer"
+                                },
+                                {
+                                    "0": "Athletics",
+                                    "1": "1976 Summer"
+                                },
+                                {
+                                    "0": "Boxing",
+                                    "1": "1904 Summer"
+                                },
+                                {
+                                    "0": "Equestrianism",
+                                    "1": "2012 Summer"
+                                },
+                                {
+                                    "0": "Gymnastics",
+                                    "1": "1896 Summer"
+                                }
+                            ]
+                        },
+                        "text/html": [
+                            "<table>",
+                            "<tr><th>sport</th><th>games</th></tr>",
+                            "<tr><td>Equestrianism</td><td>1960 Summer</td></tr>",
+                            "<tr><td>Archery</td><td>1984 Summer</td></tr>",
+                            "<tr><td>Taekwondo</td><td>2016 Summer</td></tr>",
+                            "<tr><td>Wrestling</td><td>1976 Summer</td></tr>",
+                            "<tr><td>Weightlifting</td><td>2004 Summer</td></tr>",
+                            "<tr><td>Cycling</td><td>1968 Summer</td></tr>",
+                            "<tr><td>Water Polo</td><td>2016 Summer</td></tr>",
+                            "<tr><td>Wrestling</td><td>1920 Summer</td></tr>",
+                            "<tr><td>Gymnastics</td><td>1928 Summer</td></tr>",
+                            "<tr><td>Canoeing</td><td>1992 Summer</td></tr>",
+                            "<tr><td>Athletics</td><td>1988 Summer</td></tr>",
+                            "<tr><td>Tug-Of-War</td><td>1912 Summer</td></tr>",
+                            "<tr><td>Canoeing</td><td>2008 Summer</td></tr>",
+                            "<tr><td>Handball</td><td>1976 Summer</td></tr>",
+                            "<tr><td>Sailing</td><td>1992 Summer</td></tr>",
+                            "<tr><td>Shooting</td><td>1996 Summer</td></tr>",
+                            "<tr><td>Athletics</td><td>1976 Summer</td></tr>",
+                            "<tr><td>Boxing</td><td>1904 Summer</td></tr>",
+                            "<tr><td>Equestrianism</td><td>2012 Summer</td></tr>",
+                            "<tr><td>Gymnastics</td><td>1896 Summer</td></tr>",
+                            "</table>"
+                        ]
+                    }
+                }
+            ],
+            "execution_count": 7
+        },
+        {
+            "cell_type": "markdown",
+            "source": [
+                "**Step2  find out how many summer olympic games are held till now.**"
+            ],
+            "metadata": {
+                "azdata_cell_guid": "66c438b9-c036-4421-a173-497107122332"
+            },
+            "attachments": {}
+        },
+        {
+            "cell_type": "code",
+            "source": [
+                "select count(distinct(games)) as games\r\n",
+                "from olympics_history\r\n",
+                "where season='Summer' ;"
+            ],
+            "metadata": {
+                "azdata_cell_guid": "a9669777-8b4e-48b4-9036-e6b038e79950",
+                "language": "sql"
+            },
+            "outputs": [
+                {
+                    "output_type": "display_data",
+                    "data": {
+                        "text/html": "(1 row(s) affected)"
+                    },
+                    "metadata": {}
+                },
+                {
+                    "output_type": "display_data",
+                    "data": {
+                        "text/html": "Total execution time: 00:00:00.644"
+                    },
+                    "metadata": {}
+                },
+                {
+                    "output_type": "execute_result",
+                    "metadata": {},
+                    "execution_count": 8,
+                    "data": {
+                        "application/vnd.dataresource+json": {
+                            "schema": {
+                                "fields": [
+                                    {
+                                        "name": "games"
+                                    }
+                                ]
+                            },
+                            "data": [
+                                {
+                                    "0": "29"
+                                }
+                            ]
+                        },
+                        "text/html": [
+                            "<table>",
+                            "<tr><th>games</th></tr>",
+                            "<tr><td>29</td></tr>",
+                            "</table>"
+                        ]
+                    }
+                }
+            ],
+            "execution_count": 8
+        },
+        {
+            "cell_type": "markdown",
+            "source": [
+                "**step3: Final answer**"
+            ],
+            "metadata": {
+                "azdata_cell_guid": "026a9cb7-783e-4087-8698-0845fc332ae2"
+            },
+            "attachments": {}
+        },
+        {
+            "cell_type": "code",
+            "source": [
+                "with t1 as (\r\n",
+                "select distinct sport, games\r\n",
+                "from olympics_history\r\n",
+                "where season = 'Summer'\r\n",
+                "order by games),\r\n",
+                "t2 as (\r\n",
+                "select sport, count(games) as total_count\r\n",
+                "\tfrom t1\r\n",
+                "\tgroup by sport \r\n",
+                "\torder by total_count\r\n",
+                "),\r\n",
+                "t3 as (\r\n",
+                "select count(distinct(games)) as total_number_of_games\r\n",
+                "from olympics_history\r\n",
+                "where season='Summer' \r\n",
+                ")\r\n",
+                "select sport, total_count\r\n",
+                "from t2\r\n",
+                "inner join t3\r\n",
+                "on t2.total_count = t3.total_number_of_games;"
+            ],
+            "metadata": {
+                "azdata_cell_guid": "3c687a60-5bcd-4c16-b847-44b52ddf9fe0",
+                "language": "sql"
+            },
+            "outputs": [
+                {
+                    "output_type": "display_data",
+                    "data": {
+                        "text/html": "(5 row(s) affected)"
+                    },
+                    "metadata": {}
+                },
+                {
+                    "output_type": "display_data",
+                    "data": {
+                        "text/html": "Total execution time: 00:00:00.501"
+                    },
+                    "metadata": {}
+                },
+                {
+                    "output_type": "execute_result",
+                    "metadata": {},
+                    "execution_count": 9,
+                    "data": {
+                        "application/vnd.dataresource+json": {
+                            "schema": {
+                                "fields": [
+                                    {
+                                        "name": "sport"
+                                    },
+                                    {
+                                        "name": "total_count"
+                                    }
+                                ]
+                            },
+                            "data": [
+                                {
+                                    "0": "Cycling",
+                                    "1": "29"
+                                },
+                                {
+                                    "0": "Athletics",
+                                    "1": "29"
+                                },
+                                {
+                                    "0": "Gymnastics",
+                                    "1": "29"
+                                },
+                                {
+                                    "0": "Fencing",
+                                    "1": "29"
+                                },
+                                {
+                                    "0": "Swimming",
+                                    "1": "29"
+                                }
+                            ]
+                        },
+                        "text/html": [
+                            "<table>",
+                            "<tr><th>sport</th><th>total_count</th></tr>",
+                            "<tr><td>Cycling</td><td>29</td></tr>",
+                            "<tr><td>Athletics</td><td>29</td></tr>",
+                            "<tr><td>Gymnastics</td><td>29</td></tr>",
+                            "<tr><td>Fencing</td><td>29</td></tr>",
+                            "<tr><td>Swimming</td><td>29</td></tr>",
+                            "</table>"
+                        ]
+                    }
+                }
+            ],
+            "execution_count": 9
+        },
+        {
+            "cell_type": "markdown",
+            "source": [
+                "**Fetch the top 5 athlete who have won the most gold medal**"
+            ],
+            "metadata": {
+                "azdata_cell_guid": "afa5dffc-a349-48e4-80f6-6bba0397843d"
+            },
+            "attachments": {}
+        },
+        {
+            "cell_type": "code",
+            "source": [
+                "with t1 as (\r\n",
+                "select name, count(medal) as count\r\n",
+                "from olympics_history\r\n",
+                "where medal='Gold'\r\n",
+                "group by name\r\n",
+                "order by count desc),\r\n",
+                "t2 as (\r\n",
+                "select *, dense_rank() over(order by count desc) as rank from t1)\r\n",
+                "select * from t2 where rank <= 5;"
+            ],
+            "metadata": {
+                "azdata_cell_guid": "d4bdc50b-c758-4b3a-bbc6-31445aa79eeb",
+                "language": "sql"
+            },
+            "outputs": [
+                {
+                    "output_type": "display_data",
+                    "data": {
+                        "text/html": "(18 row(s) affected)"
+                    },
+                    "metadata": {}
+                },
+                {
+                    "output_type": "display_data",
+                    "data": {
+                        "text/html": "Total execution time: 00:00:00.080"
+                    },
+                    "metadata": {}
+                },
+                {
+                    "output_type": "execute_result",
+                    "metadata": {},
+                    "execution_count": 10,
+                    "data": {
+                        "application/vnd.dataresource+json": {
+                            "schema": {
+                                "fields": [
+                                    {
+                                        "name": "name"
+                                    },
+                                    {
+                                        "name": "count"
+                                    },
+                                    {
+                                        "name": "rank"
+                                    }
+                                ]
+                            },
+                            "data": [
+                                {
+                                    "0": "Michael Fred Phelps, II",
+                                    "1": "23",
+                                    "2": "1"
+                                },
+                                {
+                                    "0": "Raymond Clarence \"Ray\" Ewry",
+                                    "1": "10",
+                                    "2": "2"
+                                },
+                                {
+                                    "0": "Larysa Semenivna Latynina (Diriy-)",
+                                    "1": "9",
+                                    "2": "3"
+                                },
+                                {
+                                    "0": "Frederick Carlton \"Carl\" Lewis",
+                                    "1": "9",
+                                    "2": "3"
+                                },
+                                {
+                                    "0": "Paavo Johannes Nurmi",
+                                    "1": "9",
+                                    "2": "3"
+                                },
+                                {
+                                    "0": "Mark Andrew Spitz",
+                                    "1": "9",
+                                    "2": "3"
+                                },
+                                {
+                                    "0": "Sawao Kato",
+                                    "1": "8",
+                                    "2": "4"
+                                },
+                                {
+                                    "0": "Usain St. Leo Bolt",
+                                    "1": "8",
+                                    "2": "4"
+                                },
+                                {
+                                    "0": "Ole Einar Bjrndalen",
+                                    "1": "8",
+                                    "2": "4"
+                                },
+                                {
+                                    "0": "Matthew Nicholas \"Matt\" Biondi",
+                                    "1": "8",
+                                    "2": "4"
+                                },
+                                {
+                                    "0": "Birgit Fischer-Schmidt",
+                                    "1": "8",
+                                    "2": "4"
+                                },
+                                {
+                                    "0": "Jennifer Elisabeth \"Jenny\" Thompson (-Cumpelik)",
+                                    "1": "8",
+                                    "2": "4"
+                                },
+                                {
+                                    "0": "Aladr Gerevich (-Gerei)",
+                                    "1": "7",
+                                    "2": "5"
+                                },
+                                {
+                                    "0": "Borys Anfiyanovych Shakhlin",
+                                    "1": "7",
+                                    "2": "5"
+                                },
+                                {
+                                    "0": "Nikolay Yefimovich Andrianov",
+                                    "1": "7",
+                                    "2": "5"
+                                },
+                                {
+                                    "0": "Viktor Ivanovych Chukarin",
+                                    "1": "7",
+                                    "2": "5"
+                                },
+                                {
+                                    "0": "Donald Arthur \"Don\" Schollander",
+                                    "1": "7",
+                                    "2": "5"
+                                },
+                                {
+                                    "0": "Vra slavsk (-Odloilov)",
+                                    "1": "7",
+                                    "2": "5"
+                                }
+                            ]
+                        },
+                        "text/html": [
+                            "<table>",
+                            "<tr><th>name</th><th>count</th><th>rank</th></tr>",
+                            "<tr><td>Michael Fred Phelps, II</td><td>23</td><td>1</td></tr>",
+                            "<tr><td>Raymond Clarence &quot;Ray&quot; Ewry</td><td>10</td><td>2</td></tr>",
+                            "<tr><td>Larysa Semenivna Latynina (Diriy-)</td><td>9</td><td>3</td></tr>",
+                            "<tr><td>Frederick Carlton &quot;Carl&quot; Lewis</td><td>9</td><td>3</td></tr>",
+                            "<tr><td>Paavo Johannes Nurmi</td><td>9</td><td>3</td></tr>",
+                            "<tr><td>Mark Andrew Spitz</td><td>9</td><td>3</td></tr>",
+                            "<tr><td>Sawao Kato</td><td>8</td><td>4</td></tr>",
+                            "<tr><td>Usain St. Leo Bolt</td><td>8</td><td>4</td></tr>",
+                            "<tr><td>Ole Einar Bjrndalen</td><td>8</td><td>4</td></tr>",
+                            "<tr><td>Matthew Nicholas &quot;Matt&quot; Biondi</td><td>8</td><td>4</td></tr>",
+                            "<tr><td>Birgit Fischer-Schmidt</td><td>8</td><td>4</td></tr>",
+                            "<tr><td>Jennifer Elisabeth &quot;Jenny&quot; Thompson (-Cumpelik)</td><td>8</td><td>4</td></tr>",
+                            "<tr><td>Aladr Gerevich (-Gerei)</td><td>7</td><td>5</td></tr>",
+                            "<tr><td>Borys Anfiyanovych Shakhlin</td><td>7</td><td>5</td></tr>",
+                            "<tr><td>Nikolay Yefimovich Andrianov</td><td>7</td><td>5</td></tr>",
+                            "<tr><td>Viktor Ivanovych Chukarin</td><td>7</td><td>5</td></tr>",
+                            "<tr><td>Donald Arthur &quot;Don&quot; Schollander</td><td>7</td><td>5</td></tr>",
+                            "<tr><td>Vra slavsk (-Odloilov)</td><td>7</td><td>5</td></tr>",
+                            "</table>"
+                        ]
+                    }
+                }
+            ],
+            "execution_count": 10
+        },
+        {
+            "cell_type": "markdown",
+            "source": [
+                "**Till Now how many olympic games have been held**"
+            ],
+            "metadata": {
+                "azdata_cell_guid": "f5fe9aa8-3b02-457d-9b55-d793f4acf1af"
+            },
+            "attachments": {}
+        },
+        {
+            "cell_type": "code",
+            "source": [
+                "select COUNT(DISTINCT(games))\r\n",
+                "from olympics_history;"
+            ],
+            "metadata": {
+                "azdata_cell_guid": "2c3a2cd5-50b9-40d2-b3d3-d179ad68fbd9",
+                "language": "sql"
+            },
+            "outputs": [
+                {
+                    "output_type": "display_data",
+                    "data": {
+                        "text/html": "(1 row(s) affected)"
+                    },
+                    "metadata": {}
+                },
+                {
+                    "output_type": "display_data",
+                    "data": {
+                        "text/html": "Total execution time: 00:00:00.414"
+                    },
+                    "metadata": {}
+                },
+                {
+                    "output_type": "execute_result",
+                    "metadata": {},
+                    "execution_count": 14,
+                    "data": {
+                        "application/vnd.dataresource+json": {
+                            "schema": {
+                                "fields": [
+                                    {
+                                        "name": "count"
+                                    }
+                                ]
+                            },
+                            "data": [
+                                {
+                                    "0": "51"
+                                }
+                            ]
+                        },
+                        "text/html": [
+                            "<table>",
+                            "<tr><th>count</th></tr>",
+                            "<tr><td>51</td></tr>",
+                            "</table>"
+                        ]
+                    }
+                }
+            ],
+            "execution_count": 14
+        },
+        {
+            "cell_type": "markdown",
+            "source": [
+                "**Listing down all the olympics games held so far**"
+            ],
+            "metadata": {
+                "azdata_cell_guid": "4de8a8d7-a722-4477-b1e0-3200fa0cc229"
+            },
+            "attachments": {}
+        },
+        {
+            "cell_type": "code",
+            "source": [
+                "select distinct year, city, games\r\n",
+                "from olympics_history\r\n",
+                "order by year\r\n",
+                "fetch first 10 rows only"
+            ],
+            "metadata": {
+                "azdata_cell_guid": "e058b355-301d-4abd-958f-b95b10e940b5",
+                "language": "sql"
+            },
+            "outputs": [
+                {
+                    "output_type": "display_data",
+                    "data": {
+                        "text/html": "(10 row(s) affected)"
+                    },
+                    "metadata": {}
+                },
+                {
+                    "output_type": "display_data",
+                    "data": {
+                        "text/html": "Total execution time: 00:00:00.213"
+                    },
+                    "metadata": {}
+                },
+                {
+                    "output_type": "execute_result",
+                    "metadata": {},
+                    "execution_count": 27,
+                    "data": {
+                        "application/vnd.dataresource+json": {
+                            "schema": {
+                                "fields": [
+                                    {
+                                        "name": "year"
+                                    },
+                                    {
+                                        "name": "city"
+                                    },
+                                    {
+                                        "name": "games"
+                                    }
+                                ]
+                            },
+                            "data": [
+                                {
+                                    "0": "1896",
+                                    "1": "Athina",
+                                    "2": "1896 Summer"
+                                },
+                                {
+                                    "0": "1900",
+                                    "1": "Paris",
+                                    "2": "1900 Summer"
+                                },
+                                {
+                                    "0": "1904",
+                                    "1": "St. Louis",
+                                    "2": "1904 Summer"
+                                },
+                                {
+                                    "0": "1906",
+                                    "1": "Athina",
+                                    "2": "1906 Summer"
+                                },
+                                {
+                                    "0": "1908",
+                                    "1": "London",
+                                    "2": "1908 Summer"
+                                },
+                                {
+                                    "0": "1912",
+                                    "1": "Stockholm",
+                                    "2": "1912 Summer"
+                                },
+                                {
+                                    "0": "1920",
+                                    "1": "Antwerpen",
+                                    "2": "1920 Summer"
+                                },
+                                {
+                                    "0": "1924",
+                                    "1": "Chamonix",
+                                    "2": "1924 Winter"
+                                },
+                                {
+                                    "0": "1924",
+                                    "1": "Paris",
+                                    "2": "1924 Summer"
+                                },
+                                {
+                                    "0": "1928",
+                                    "1": "Amsterdam",
+                                    "2": "1928 Summer"
+                                }
+                            ]
+                        },
+                        "text/html": [
+                            "<table>",
+                            "<tr><th>year</th><th>city</th><th>games</th></tr>",
+                            "<tr><td>1896</td><td>Athina</td><td>1896 Summer</td></tr>",
+                            "<tr><td>1900</td><td>Paris</td><td>1900 Summer</td></tr>",
+                            "<tr><td>1904</td><td>St. Louis</td><td>1904 Summer</td></tr>",
+                            "<tr><td>1906</td><td>Athina</td><td>1906 Summer</td></tr>",
+                            "<tr><td>1908</td><td>London</td><td>1908 Summer</td></tr>",
+                            "<tr><td>1912</td><td>Stockholm</td><td>1912 Summer</td></tr>",
+                            "<tr><td>1920</td><td>Antwerpen</td><td>1920 Summer</td></tr>",
+                            "<tr><td>1924</td><td>Chamonix</td><td>1924 Winter</td></tr>",
+                            "<tr><td>1924</td><td>Paris</td><td>1924 Summer</td></tr>",
+                            "<tr><td>1928</td><td>Amsterdam</td><td>1928 Summer</td></tr>",
+                            "</table>"
+                        ]
+                    }
+                }
+            ],
+            "execution_count": 27
+        },
+        {
+            "cell_type": "markdown",
+            "source": [
+                "**Get the total number of nations who participated in each olympic games**"
+            ],
+            "metadata": {
+                "azdata_cell_guid": "98921865-d6a4-4aa0-800a-927616d4962a"
+            },
+            "attachments": {}
+        },
+        {
+            "cell_type": "markdown",
+            "source": [
+                "**Step1: First identify countries with respect to the year of participation**"
+            ],
+            "metadata": {
+                "azdata_cell_guid": "94aa35c6-b338-47da-bf78-09aafd3da1f6"
+            },
+            "attachments": {}
+        },
+        {
+            "cell_type": "code",
+            "source": [
+                "select nr.region as regions, oh.games as games\r\n",
+                "from olympics_history as oh\r\n",
+                "inner JOIN olympics_history_noc_regions as nr\r\n",
+                "on oh.noc = nr.noc\r\n",
+                "order by region\r\n",
+                "fetch first 15 rows only"
+            ],
+            "metadata": {
+                "azdata_cell_guid": "6b15edac-3b8e-4d2c-9e8a-487b5bd6e1fe",
+                "language": "sql"
+            },
+            "outputs": [
+                {
+                    "output_type": "display_data",
+                    "data": {
+                        "text/html": "(15 row(s) affected)"
+                    },
+                    "metadata": {}
+                },
+                {
+                    "output_type": "display_data",
+                    "data": {
+                        "text/html": "Total execution time: 00:00:00.180"
+                    },
+                    "metadata": {}
+                },
+                {
+                    "output_type": "execute_result",
+                    "metadata": {},
+                    "execution_count": 37,
+                    "data": {
+                        "application/vnd.dataresource+json": {
+                            "schema": {
+                                "fields": [
+                                    {
+                                        "name": "regions"
+                                    },
+                                    {
+                                        "name": "games"
+                                    }
+                                ]
+                            },
+                            "data": [
+                                {
+                                    "0": "Afghanistan",
+                                    "1": "1948 Summer"
+                                },
+                                {
+                                    "0": "Afghanistan",
+                                    "1": "1936 Summer"
+                                },
+                                {
+                                    "0": "Afghanistan",
+                                    "1": "1980 Summer"
+                                },
+                                {
+                                    "0": "Afghanistan",
+                                    "1": "1936 Summer"
+                                },
+                                {
+                                    "0": "Afghanistan",
+                                    "1": "1948 Summer"
+                                },
+                                {
+                                    "0": "Afghanistan",
+                                    "1": "1968 Summer"
+                                },
+                                {
+                                    "0": "Afghanistan",
+                                    "1": "1936 Summer"
+                                },
+                                {
+                                    "0": "Afghanistan",
+                                    "1": "1948 Summer"
+                                },
+                                {
+                                    "0": "Afghanistan",
+                                    "1": "1964 Summer"
+                                },
+                                {
+                                    "0": "Afghanistan",
+                                    "1": "1972 Summer"
+                                },
+                                {
+                                    "0": "Afghanistan",
+                                    "1": "1948 Summer"
+                                },
+                                {
+                                    "0": "Afghanistan",
+                                    "1": "1936 Summer"
+                                },
+                                {
+                                    "0": "Afghanistan",
+                                    "1": "1956 Summer"
+                                },
+                                {
+                                    "0": "Afghanistan",
+                                    "1": "1980 Summer"
+                                },
+                                {
+                                    "0": "Afghanistan",
+                                    "1": "1948 Summer"
+                                }
+                            ]
+                        },
+                        "text/html": [
+                            "<table>",
+                            "<tr><th>regions</th><th>games</th></tr>",
+                            "<tr><td>Afghanistan</td><td>1948 Summer</td></tr>",
+                            "<tr><td>Afghanistan</td><td>1936 Summer</td></tr>",
+                            "<tr><td>Afghanistan</td><td>1980 Summer</td></tr>",
+                            "<tr><td>Afghanistan</td><td>1936 Summer</td></tr>",
+                            "<tr><td>Afghanistan</td><td>1948 Summer</td></tr>",
+                            "<tr><td>Afghanistan</td><td>1968 Summer</td></tr>",
+                            "<tr><td>Afghanistan</td><td>1936 Summer</td></tr>",
+                            "<tr><td>Afghanistan</td><td>1948 Summer</td></tr>",
+                            "<tr><td>Afghanistan</td><td>1964 Summer</td></tr>",
+                            "<tr><td>Afghanistan</td><td>1972 Summer</td></tr>",
+                            "<tr><td>Afghanistan</td><td>1948 Summer</td></tr>",
+                            "<tr><td>Afghanistan</td><td>1936 Summer</td></tr>",
+                            "<tr><td>Afghanistan</td><td>1956 Summer</td></tr>",
+                            "<tr><td>Afghanistan</td><td>1980 Summer</td></tr>",
+                            "<tr><td>Afghanistan</td><td>1948 Summer</td></tr>",
+                            "</table>"
+                        ]
+                    }
+                }
+            ],
+            "execution_count": 37
+        },
+        {
+            "cell_type": "markdown",
+            "source": [
+                "**Step2: Now distinct regions with repect to games, group by games**"
+            ],
+            "metadata": {
+                "language": "sql",
+                "azdata_cell_guid": "c9237a60-fdbe-4c26-97c1-eb9f2d9e9460"
+            },
+            "attachments": {}
+        },
+        {
+            "cell_type": "code",
+            "source": [
+                "select  count(distinct nr.region) as regions, oh.games as games\r\n",
+                "from olympics_history as oh\r\n",
+                "inner JOIN olympics_history_noc_regions as nr\r\n",
+                "on oh.noc = nr.noc\r\n",
+                "group by games"
+            ],
+            "metadata": {
+                "azdata_cell_guid": "f95055fd-3d9f-489e-b113-32d328cb9a2e",
+                "language": "sql"
+            },
+            "outputs": [
+                {
+                    "output_type": "display_data",
+                    "data": {
+                        "text/html": "(51 row(s) affected)"
+                    },
+                    "metadata": {}
+                },
+                {
+                    "output_type": "display_data",
+                    "data": {
+                        "text/html": "Total execution time: 00:00:00.916"
+                    },
+                    "metadata": {}
+                },
+                {
+                    "output_type": "execute_result",
+                    "metadata": {},
+                    "execution_count": 33,
+                    "data": {
+                        "application/vnd.dataresource+json": {
+                            "schema": {
+                                "fields": [
+                                    {
+                                        "name": "regions"
+                                    },
+                                    {
+                                        "name": "games"
+                                    }
+                                ]
+                            },
+                            "data": [
+                                {
+                                    "0": "12",
+                                    "1": "1896 Summer"
+                                },
+                                {
+                                    "0": "31",
+                                    "1": "1900 Summer"
+                                },
+                                {
+                                    "0": "14",
+                                    "1": "1904 Summer"
+                                },
+                                {
+                                    "0": "20",
+                                    "1": "1906 Summer"
+                                },
+                                {
+                                    "0": "22",
+                                    "1": "1908 Summer"
+                                },
+                                {
+                                    "0": "29",
+                                    "1": "1912 Summer"
+                                },
+                                {
+                                    "0": "29",
+                                    "1": "1920 Summer"
+                                },
+                                {
+                                    "0": "45",
+                                    "1": "1924 Summer"
+                                },
+                                {
+                                    "0": "19",
+                                    "1": "1924 Winter"
+                                },
+                                {
+                                    "0": "46",
+                                    "1": "1928 Summer"
+                                },
+                                {
+                                    "0": "25",
+                                    "1": "1928 Winter"
+                                },
+                                {
+                                    "0": "47",
+                                    "1": "1932 Summer"
+                                },
+                                {
+                                    "0": "17",
+                                    "1": "1932 Winter"
+                                },
+                                {
+                                    "0": "49",
+                                    "1": "1936 Summer"
+                                },
+                                {
+                                    "0": "28",
+                                    "1": "1936 Winter"
+                                },
+                                {
+                                    "0": "58",
+                                    "1": "1948 Summer"
+                                },
+                                {
+                                    "0": "28",
+                                    "1": "1948 Winter"
+                                },
+                                {
+                                    "0": "66",
+                                    "1": "1952 Summer"
+                                },
+                                {
+                                    "0": "30",
+                                    "1": "1952 Winter"
+                                },
+                                {
+                                    "0": "70",
+                                    "1": "1956 Summer"
+                                },
+                                {
+                                    "0": "32",
+                                    "1": "1956 Winter"
+                                },
+                                {
+                                    "0": "82",
+                                    "1": "1960 Summer"
+                                },
+                                {
+                                    "0": "30",
+                                    "1": "1960 Winter"
+                                },
+                                {
+                                    "0": "93",
+                                    "1": "1964 Summer"
+                                },
+                                {
+                                    "0": "36",
+                                    "1": "1964 Winter"
+                                },
+                                {
+                                    "0": "110",
+                                    "1": "1968 Summer"
+                                },
+                                {
+                                    "0": "36",
+                                    "1": "1968 Winter"
+                                },
+                                {
+                                    "0": "119",
+                                    "1": "1972 Summer"
+                                },
+                                {
+                                    "0": "34",
+                                    "1": "1972 Winter"
+                                },
+                                {
+                                    "0": "90",
+                                    "1": "1976 Summer"
+                                },
+                                {
+                                    "0": "36",
+                                    "1": "1976 Winter"
+                                },
+                                {
+                                    "0": "80",
+                                    "1": "1980 Summer"
+                                },
+                                {
+                                    "0": "36",
+                                    "1": "1980 Winter"
+                                },
+                                {
+                                    "0": "138",
+                                    "1": "1984 Summer"
+                                },
+                                {
+                                    "0": "48",
+                                    "1": "1984 Winter"
+                                },
+                                {
+                                    "0": "155",
+                                    "1": "1988 Summer"
+                                },
+                                {
+                                    "0": "56",
+                                    "1": "1988 Winter"
+                                },
+                                {
+                                    "0": "167",
+                                    "1": "1992 Summer"
+                                },
+                                {
+                                    "0": "64",
+                                    "1": "1992 Winter"
+                                },
+                                {
+                                    "0": "67",
+                                    "1": "1994 Winter"
+                                },
+                                {
+                                    "0": "195",
+                                    "1": "1996 Summer"
+                                },
+                                {
+                                    "0": "72",
+                                    "1": "1998 Winter"
+                                },
+                                {
+                                    "0": "198",
+                                    "1": "2000 Summer"
+                                },
+                                {
+                                    "0": "76",
+                                    "1": "2002 Winter"
+                                },
+                                {
+                                    "0": "199",
+                                    "1": "2004 Summer"
+                                },
+                                {
+                                    "0": "78",
+                                    "1": "2006 Winter"
+                                },
+                                {
+                                    "0": "202",
+                                    "1": "2008 Summer"
+                                },
+                                {
+                                    "0": "81",
+                                    "1": "2010 Winter"
+                                },
+                                {
+                                    "0": "203",
+                                    "1": "2012 Summer"
+                                },
+                                {
+                                    "0": "88",
+                                    "1": "2014 Winter"
+                                },
+                                {
+                                    "0": "204",
+                                    "1": "2016 Summer"
+                                }
+                            ]
+                        },
+                        "text/html": [
+                            "<table>",
+                            "<tr><th>regions</th><th>games</th></tr>",
+                            "<tr><td>12</td><td>1896 Summer</td></tr>",
+                            "<tr><td>31</td><td>1900 Summer</td></tr>",
+                            "<tr><td>14</td><td>1904 Summer</td></tr>",
+                            "<tr><td>20</td><td>1906 Summer</td></tr>",
+                            "<tr><td>22</td><td>1908 Summer</td></tr>",
+                            "<tr><td>29</td><td>1912 Summer</td></tr>",
+                            "<tr><td>29</td><td>1920 Summer</td></tr>",
+                            "<tr><td>45</td><td>1924 Summer</td></tr>",
+                            "<tr><td>19</td><td>1924 Winter</td></tr>",
+                            "<tr><td>46</td><td>1928 Summer</td></tr>",
+                            "<tr><td>25</td><td>1928 Winter</td></tr>",
+                            "<tr><td>47</td><td>1932 Summer</td></tr>",
+                            "<tr><td>17</td><td>1932 Winter</td></tr>",
+                            "<tr><td>49</td><td>1936 Summer</td></tr>",
+                            "<tr><td>28</td><td>1936 Winter</td></tr>",
+                            "<tr><td>58</td><td>1948 Summer</td></tr>",
+                            "<tr><td>28</td><td>1948 Winter</td></tr>",
+                            "<tr><td>66</td><td>1952 Summer</td></tr>",
+                            "<tr><td>30</td><td>1952 Winter</td></tr>",
+                            "<tr><td>70</td><td>1956 Summer</td></tr>",
+                            "<tr><td>32</td><td>1956 Winter</td></tr>",
+                            "<tr><td>82</td><td>1960 Summer</td></tr>",
+                            "<tr><td>30</td><td>1960 Winter</td></tr>",
+                            "<tr><td>93</td><td>1964 Summer</td></tr>",
+                            "<tr><td>36</td><td>1964 Winter</td></tr>",
+                            "<tr><td>110</td><td>1968 Summer</td></tr>",
+                            "<tr><td>36</td><td>1968 Winter</td></tr>",
+                            "<tr><td>119</td><td>1972 Summer</td></tr>",
+                            "<tr><td>34</td><td>1972 Winter</td></tr>",
+                            "<tr><td>90</td><td>1976 Summer</td></tr>",
+                            "<tr><td>36</td><td>1976 Winter</td></tr>",
+                            "<tr><td>80</td><td>1980 Summer</td></tr>",
+                            "<tr><td>36</td><td>1980 Winter</td></tr>",
+                            "<tr><td>138</td><td>1984 Summer</td></tr>",
+                            "<tr><td>48</td><td>1984 Winter</td></tr>",
+                            "<tr><td>155</td><td>1988 Summer</td></tr>",
+                            "<tr><td>56</td><td>1988 Winter</td></tr>",
+                            "<tr><td>167</td><td>1992 Summer</td></tr>",
+                            "<tr><td>64</td><td>1992 Winter</td></tr>",
+                            "<tr><td>67</td><td>1994 Winter</td></tr>",
+                            "<tr><td>195</td><td>1996 Summer</td></tr>",
+                            "<tr><td>72</td><td>1998 Winter</td></tr>",
+                            "<tr><td>198</td><td>2000 Summer</td></tr>",
+                            "<tr><td>76</td><td>2002 Winter</td></tr>",
+                            "<tr><td>199</td><td>2004 Summer</td></tr>",
+                            "<tr><td>78</td><td>2006 Winter</td></tr>",
+                            "<tr><td>202</td><td>2008 Summer</td></tr>",
+                            "<tr><td>81</td><td>2010 Winter</td></tr>",
+                            "<tr><td>203</td><td>2012 Summer</td></tr>",
+                            "<tr><td>88</td><td>2014 Winter</td></tr>",
+                            "<tr><td>204</td><td>2016 Summer</td></tr>",
+                            "</table>"
+                        ]
+                    }
+                }
+            ],
+            "execution_count": 33
+        },
+        {
+            "cell_type": "markdown",
+            "source": [
+                "**Which year saw the highest  number of participating countries in olympics**"
+            ],
+            "metadata": {
+                "azdata_cell_guid": "e13a99d3-da55-437b-9889-6204e19881c2"
+            },
+            "attachments": {}
+        },
+        {
+            "cell_type": "code",
+            "source": [
+                "with t1 as (select  count(distinct nr.region) as regions, oh.games as games\r\n",
+                "from olympics_history as oh\r\n",
+                "inner JOIN olympics_history_noc_regions as nr\r\n",
+                "on oh.noc = nr.noc\r\n",
+                "group by games\r\n",
+                "order by regions desc)\r\n",
+                "select t1.regions as highest,t1.games as games\r\n",
+                "from t1\r\n",
+                "fetch first 1 row only;\r\n",
+                ""
+            ],
+            "metadata": {
+                "azdata_cell_guid": "2c117e50-f38b-45f9-8da9-46a4c79d6802",
+                "language": "sql"
+            },
+            "outputs": [
+                {
+                    "output_type": "display_data",
+                    "data": {
+                        "text/html": "(1 row(s) affected)"
+                    },
+                    "metadata": {}
+                },
+                {
+                    "output_type": "display_data",
+                    "data": {
+                        "text/html": "Total execution time: 00:00:00.769"
+                    },
+                    "metadata": {}
+                },
+                {
+                    "output_type": "execute_result",
+                    "metadata": {},
+                    "execution_count": 41,
+                    "data": {
+                        "application/vnd.dataresource+json": {
+                            "schema": {
+                                "fields": [
+                                    {
+                                        "name": "highest"
+                                    },
+                                    {
+                                        "name": "games"
+                                    }
+                                ]
+                            },
+                            "data": [
+                                {
+                                    "0": "204",
+                                    "1": "2016 Summer"
+                                }
+                            ]
+                        },
+                        "text/html": [
+                            "<table>",
+                            "<tr><th>highest</th><th>games</th></tr>",
+                            "<tr><td>204</td><td>2016 Summer</td></tr>",
+                            "</table>"
+                        ]
+                    }
+                },
+                {
+                    "output_type": "error",
+                    "evalue": "syntax error at or near \",\"",
+                    "ename": "",
+                    "traceback": []
+                }
+            ],
+            "execution_count": 41
+        },
+        {
+            "cell_type": "markdown",
+            "source": [
+                "**Which year saw the  lowest number of participating countries in olympics**"
+            ],
+            "metadata": {
+                "azdata_cell_guid": "5bd63649-463a-4e96-8253-4be82090947c"
+            },
+            "attachments": {}
+        },
+        {
+            "cell_type": "code",
+            "source": [
+                "with t1 as (select  count(distinct nr.region) as regions, oh.games as games\r\n",
+                "from olympics_history as oh\r\n",
+                "inner JOIN olympics_history_noc_regions as nr\r\n",
+                "on oh.noc = nr.noc\r\n",
+                "group by games\r\n",
+                "order by regions)\r\n",
+                "select t1.regions as highest,t1.games as games\r\n",
+                "from t1\r\n",
+                "fetch first 1 row only;"
+            ],
+            "metadata": {
+                "azdata_cell_guid": "5c5b2e06-3877-4a8e-9a25-b79e9545c625",
+                "language": "sql"
+            },
+            "outputs": [
+                {
+                    "output_type": "display_data",
+                    "data": {
+                        "text/html": "(1 row(s) affected)"
+                    },
+                    "metadata": {}
+                },
+                {
+                    "output_type": "display_data",
+                    "data": {
+                        "text/html": "Total execution time: 00:00:00.946"
+                    },
+                    "metadata": {}
+                },
+                {
+                    "output_type": "execute_result",
+                    "metadata": {},
+                    "execution_count": 42,
+                    "data": {
+                        "application/vnd.dataresource+json": {
+                            "schema": {
+                                "fields": [
+                                    {
+                                        "name": "highest"
+                                    },
+                                    {
+                                        "name": "games"
+                                    }
+                                ]
+                            },
+                            "data": [
+                                {
+                                    "0": "12",
+                                    "1": "1896 Summer"
+                                }
+                            ]
+                        },
+                        "text/html": [
+                            "<table>",
+                            "<tr><th>highest</th><th>games</th></tr>",
+                            "<tr><td>12</td><td>1896 Summer</td></tr>",
+                            "</table>"
+                        ]
+                    }
+                }
+            ],
+            "execution_count": 42
+        },
+        {
+            "cell_type": "markdown",
+            "source": [
+                ""
+            ],
+            "metadata": {
+                "azdata_cell_guid": "311a337b-6ac4-480b-9e0c-4d32ad2d4354"
+            },
+            "attachments": {}
+        }
+    ]
+}
